@@ -1,0 +1,18 @@
+# Creating container MySQL
+version: "3"
+services: 
+  tictactoe-api:
+    image: andreluizkbca/tictactoe-api
+  # Creating container (Nginx)
+  nginx:
+    image: nginx:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ./image/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - tictactoe-api
+  tictactoe-app:
+    image: andreluizkbca/tictactoe-app
+    ports:
+      - 80:80
